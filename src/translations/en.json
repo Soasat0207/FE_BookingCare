@@ -1,0 +1,70 @@
+{
+    "home-header":{
+        "specialty":"Specialty",
+        "search-doctor":"Find a doctor by specialty",
+        "health-facility":"health facilities",
+        "select-room":"Choose hospital clinic",
+        "doctor":"Doctor",
+        "select-doctor":"Choose good doctor",
+        "fee":"Checkup package",
+        "check-health":"General health check",
+        "support":"support",
+        "welcome":"Welcome,"
+
+    },
+    "banner":{
+        "title1":"MEDICAL FOUNDATION",
+        "title2":"COMPREHENSIVE HEALTH CARE",
+        "search-specialty":"search specialty",
+        "specialist-examination":"specialist examination",
+        "Remote-examination":"Remote examination",
+        "General-Examination":"General Examination",
+        "Medical-test":"Medical test",
+        "Mental-health":"Mental health",
+        "Dental-examination":"Dental examination",
+        "placeholderSearch":"Search doctor"
+    },
+    "menu": {
+        "system": {
+            "header": "System",
+            "system-administrator": {
+                "header": "System Administrator",
+                "user-manage": "User manage",
+                "user-redux": "Manage user using redux",
+                "register-package-group-or-account": "Register service package for group/account"
+            },
+            "system-parameter": {
+                "header": "System-parameter"
+            }
+        },
+        "admin":{
+            "manage-user":"User System",
+            "manage-doctor":"Manage Doctor",
+            "manage-admin":"Manage Admin",
+            "crud":"CRUD user",
+            "crud-redux":"CRUD redux",
+            "manage-clinic":"Manage Clinic",
+            "clinic":"Clinic",
+            "manage-specialty":"Manage Specialty",
+            "specialty":"Specialty",
+            "manage-handbook":"Manage Handbook",
+            "handbook":"Handbook"
+        }
+    },
+    "manage-user":{
+        "add":"Add a new user ",
+        "email":"Email",
+        "password":"Password",
+        "first_name":"First name",
+        "last_name":"Last Name",
+        "phone-number":"Phone Number",
+        "address":"address",
+        "position":"Position",
+        "role":"Role",
+        "gender":"Gender",
+        "save":"Save",
+        "image":"Image"
+
+    }
+
+}

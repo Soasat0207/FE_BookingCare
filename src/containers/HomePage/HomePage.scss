@@ -1,0 +1,152 @@
+.section-share{
+    height:330px;
+    background: #f5f5f5;
+    border-bottom: 3px solid #efeef5;
+    .section-container{
+        width: 1170px;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        display: flex;
+        flex-direction: column;
+        .section-header{
+            margin-bottom: 20px;
+            display:flex;
+            justify-content: space-between;
+            h2{
+                font-size: 24px;
+                font-weight: bold;
+                padding: 15px 0px 5px 0px;
+            }
+        }
+        .section-body{
+            .img-custom{
+                padding:10px;
+                img{
+                    width:100%;
+                }
+                .bg-img{
+                    width: 278px;
+                    padding-top: 56.25%;
+                    background-position: center;
+                    background-repeat: no-repeat; 
+                    background-size: cover;
+                }
+            }
+        }
+    }
+    &.section-specialty{
+        .bg-img{
+            background-image: url('../../assets/images/120331-co-xuong-khop.jpeg');
+        }
+    }
+    &.section-medicalFacility{
+        .bg-img{
+            background-image: url(https://cdn.bookingcare.vn/fr/w300/2020/12/20/111237-tam-ly-2.jpg);
+        }
+    }
+    &.section-outStandingDoctor{
+        .img-custom{
+            .custom-border{
+                border: 1px solid #eee;
+                text-align: center;
+                padding: 10px 5px;
+                .bg-img{
+                    width: 120px!important;;
+                    height:120px!important;
+                    padding:0;
+                    border-radius:50%;
+                    background-image: url(https://cdn.bookingcare.vn/fr/w200/2020/03/17/114430-bshung.jpg);
+                }
+                .outer-bg{
+                    display:flex;
+                    justify-content:center;
+                    align-items: center;
+                }
+            }
+            
+        }
+        
+    }
+    &.section-handBook{
+        .bg-img{
+            background-image: url(https://cdn.bookingcare.vn/fr/w300/2017/08/14/154102230620phan-biet-benh-than-kinh-va-tam-than.jpg);
+        }
+    }
+    &.section-about{
+        margin: 0 100px;
+        border-bottom: 1px solid #f5f5f5;
+        border-top: 1px solid #f5f5f5;
+        height:auto;
+        .section-about-header{
+            padding: 20px 10px;
+            font-size: 22px;
+            font-weight:600;
+        }
+        .section-about-content{
+            display:flex;
+            gap:35px;
+            width:100%;
+            .content-left{
+                width:50%
+            }
+            .content-right{
+                width:40%;
+                p{
+                    text-align:justify;
+                    font-style: italic;
+                    padding: 15px 0;
+                }
+            }
+        }
+    }
+    &.section-homeFooter{
+        text-align:center;
+    }
+    
+}
+
+
+
+//reset slick slider css 
+
+.slick-next,.slick-prev{
+    z-index: 1!important;
+    height:40px!important;
+    width:40px!important;
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    -webkit-transform: translate(0,-50%);
+    -ms-transform: translate(0,-50%);
+    transform: translate(0,-50%);
+    cursor: pointer;
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+.slick-prev:before, .slick-next:before{
+    content: "\e258" !important;
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: white;
+}
+.slick-arrow:before{
+    font-family: 'Glyphicons Halflings' !important;
+    font-style: normal;
+    font-weight: 400;
+    background: #fff;
+    border: 2px solid #d7d7d7;
+    padding: 10px;
+    text-align: center;
+    color: #959595 !important;
+}

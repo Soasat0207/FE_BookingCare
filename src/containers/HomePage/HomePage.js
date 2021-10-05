@@ -1,0 +1,52 @@
+import React, {
+    Component, Fragment
+} from 'react';
+import {
+    connect
+} from 'react-redux';
+import HomeHeader from './HomeHeader';
+import Specialty from './Section/Specialty';
+import MedicalFacility from './Section/MedicalFacility';
+import OutStandingDoctor from './Section/OutStandingDoctor';
+import HandBook from './Section/HandBook';
+import HomeFooter from './Section/HomeFooter';
+import About from './Section/About';
+import './HomePage.scss'
+
+class HomePage extends Component {
+
+    render() {
+        let settings = {
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            touchMove: true,
+        };
+        return ( 
+            <Fragment>
+                <HomeHeader/>
+                <Specialty settings={settings}/>
+                <MedicalFacility  settings={settings}/>
+                <OutStandingDoctor settings={settings}/>
+                <HandBook settings={settings}/>
+                <About/>
+                <HomeFooter/>
+            </Fragment>
+        );
+    }
+
+}
+
+const mapStateToProps = state => {
+    return {
+        isLoggedIn: state.user.isLoggedIn
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
