@@ -82,7 +82,6 @@ export const createNewUser = (data) => {
         try {
             if(data){
                 let res = await createNewUserService(data);
-                console.log('check res',res);
                 if(res && res.errCode === 0) {
                     dispatch(createNewUserSuccess());
                 }

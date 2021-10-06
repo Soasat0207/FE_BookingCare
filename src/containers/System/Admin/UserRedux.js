@@ -26,6 +26,14 @@ class UserRedux extends Component {
             position: '',
             role:'',
             avatar:'',
+            validError:{
+                addressError: null,
+                emailError: null,
+                firstNameError: null,
+                lastNameError: null,
+                passwordError: null,
+                phoneNumberError: null,
+            }
         }
     }
     async componentDidMount() {
@@ -107,15 +115,43 @@ class UserRedux extends Component {
     checkValidateInput = () => {
         let isValid = true;
         let arrCheck = ['email', 'password','firstName','lastName','phoneNumber','address'];
+        let regexPhoneNumber = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+        let regexEmail = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
         for(let i = 0 ; i < arrCheck.length ; i++){
             if(!this.state[arrCheck[i]]){
                 isValid = false;
-                alert('this input is required '+ arrCheck[i]);
-                break;
+                this.setError(arrCheck[i], "This field cannot be empty");
+            }
+            else{
+                this.setError(arrCheck[i], null);
             }
         }
+        if(this.state.email.length > 0 && !regexEmail.test(this.state.email)){
+            this.setError('email', "Please enter a valid email address");
+            isValid = false;
+        } 
+        if(this.state.email.length > 0 && regexEmail.test(this.state.email)){
+            this.setError('email',null);
+        } 
+        if(this.state.phoneNumber.length > 0  && !regexPhoneNumber.test(this.state.phoneNumber)){
+            isValid = false;
+            this.setError('phoneNumber', "Please enter a valid Phone Number address");
+        } 
+        if(this.state.phoneNumber.length > 0  && regexPhoneNumber.test(this.state.phoneNumber)){
+             this.setError('phoneNumber',null)
+        };
         return isValid;
     }
+    setError = (fieldName, error) =>{
+        let keyState = fieldName+"Error";
+        this.setState((prevState) => ({  
+            validError: {                   
+                ...prevState.validError, 
+                [keyState]: error
+            }
+        }))
+    }
+
     render() {
     let genders = this.state.genderArr;
     let roles = this.state.roleArr;
@@ -140,6 +176,7 @@ class UserRedux extends Component {
                                    value={email}
                                    onChange={(event)=>{this.onChangeInput(event,'email')}}
                                    />
+                                   <span>{this.state.validError.emailError === null ? null : this.state.validError.emailError}</span>
                                </div>
                                <div className="mt-2 col-3">
                                    <label><FormattedMessage id="manage-user.password"/> </label>
@@ -147,6 +184,7 @@ class UserRedux extends Component {
                                     value={password}
                                     onChange={(event)=>{this.onChangeInput(event,'password')}}
                                    />
+                                   <span>{this.state.validError.passwordError === null ? null : this.state.validError.passwordError}</span>
                                </div>
                                <div className="mt-2 col-3">
                                    <label><FormattedMessage id="manage-user.first_name"/> </label>
@@ -154,6 +192,7 @@ class UserRedux extends Component {
                                     value={firstName}
                                     onChange={(event)=>{this.onChangeInput(event,'firstName')}}
                                    />
+                                   <span>{this.state.validError.firstNameError === null ? null : this.state.validError.firstNameError}</span>
                                </div>
                                <div className="mt-2 col-3">
                                    <label> <FormattedMessage id="manage-user.last_name"/> </label>
@@ -161,6 +200,7 @@ class UserRedux extends Component {
                                     value={lastName}
                                     onChange={(event)=>{this.onChangeInput(event,'lastName')}}
                                    />
+                                   <span>{this.state.validError.lastNameError === null ? null : this.state.validError.lastNameError}</span>
                                </div>
                                <div className="mt-2 col-3">
                                    <label><FormattedMessage id="manage-user.phone-number"/> </label>
@@ -168,6 +208,7 @@ class UserRedux extends Component {
                                     value={phoneNumber}
                                     onChange={(event)=>{this.onChangeInput(event,'phoneNumber')}}
                                    />
+                                   <span>{this.state.validError.phoneNumberError === null ? null : this.state.validError.phoneNumberError}</span>
                                </div>
                                <div className="mt-2 col-9">
                                    <label><FormattedMessage id="manage-user.address"/> </label>
@@ -175,6 +216,7 @@ class UserRedux extends Component {
                                     value={address}
                                     onChange={(event)=>{this.onChangeInput(event,'address')}}
                                    />
+                                   <span>{this.state.validError.addressError === null ? null : this.state.validError.addressError}</span>
                                </div>
                                <div className="mt-2 col-3">
                                    <label><FormattedMessage id="manage-user.position"/> </label>
