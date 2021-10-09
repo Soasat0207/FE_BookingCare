@@ -7,6 +7,7 @@ import * as actions from '../../../store/actions';
 import './UserRedux.scss';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
+import TableMangagerUser from './TableMangagerUser'
 class UserRedux extends Component {
     constructor(props) {
         super(props);
@@ -277,9 +278,10 @@ class UserRedux extends Component {
                                    ><FormattedMessage id="manage-user.save"/> </button>
                                </div>
                             </div>
+
+                            <TableMangagerUser/>
                         </div>
                     </div>
-
                     {this.state.isOpenLightBox === true &&
                     <Lightbox
                         mainSrc={this.state.previewImgUrl}

@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes';
-import {getAllCodeServices,createNewUserService} from '../../services/userService';
+import {getAllCodeServices,createNewUserService,getAllUsers} from '../../services/userService';
 
 // export const fetchGenderStart = () => ({
 //     type: actionTypes.FETCH_GENDER_START,
@@ -102,5 +102,30 @@ export const createNewUserSuccess = () => ({
 })
 export const createNewUserFailed = () => ({
     type: actionTypes.CREATE_USER_FAIDED,
+})
+export const fetchAllUsersStart =  () => {
+    return async(dispatch,getState)=>{
+        try {
+            dispatch({ type: actionTypes.FETCH_GENDER_START })
+            let res = await getAllUsers('ALL');
+            if(res && res.errCode === 0) {
+                dispatch(fetchAllUsersSuccess(res.data));
+            }
+            else{
+                dispatch(fetchAllUsersFailed());
 
+            }
+        } catch (error) {
+            dispatch(fetchAllUsersFailed());
+            console.error(error);
+        }
+    }
+}
+export const fetchAllUsersSuccess = (data) => ({
+    type: actionTypes.FETCH_ALL_USER_SUCCESS,
+    data:data
+    
+})
+export const fetchAllUsersFailed = () => ({
+    type: actionTypes.FETCH_ALL_USER_FAIDED,
 })
