@@ -3,7 +3,8 @@ import {
     getAllCodeServices,
     createNewUserService,
     getAllUsers,
-    deleteUserService
+    deleteUserService,
+    editUserService
 } from '../../services/userService';
 import {
     toast
@@ -163,4 +164,29 @@ export const deleteUserSuccess = () => ({
 })
 export const deleteUserFailed = () => ({
     type: actionTypes.CREATE_USER_FAIDED,
+})
+export const editUser = (data) => {
+    return async (dispatch, getState) => {
+        try {
+                let res = await editUserService(data);
+                if (res && res.errCode === 0) {
+                    toast.success('Update user success')
+                    dispatch(editUserSuccess());
+                } else {
+                    toast.error('Update user error')
+                    dispatch(editUserFailed());
+                }
+            
+        } catch (error) {
+            dispatch(editUserFailed());
+            console.error(error);
+        }
+    }
+}
+export const editUserSuccess = () => ({
+    type: actionTypes.EDIT_USER_SUCCESS,
+
+})
+export const editUserFailed = () => ({
+    type: actionTypes.EDIT_USER_FAIDED,
 })

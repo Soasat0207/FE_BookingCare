@@ -62,7 +62,8 @@
         "position":"Chức danh",
         "role":"Vai trò",
         "gender":"Giới tính",
-        "save":"lưu người dùng",
-        "image":"ảnh đại diện"
+        "save":"Tạo người dùng",
+        "image":"ảnh đại diện",
+        "edit":"Thay đổi "
     }
 }

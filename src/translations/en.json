@@ -63,8 +63,8 @@
         "role":"Role",
         "gender":"Gender",
         "save":"Save",
-        "image":"Image"
-
+        "image":"Image",
+        "edit":"Change"
     }
 
 }
