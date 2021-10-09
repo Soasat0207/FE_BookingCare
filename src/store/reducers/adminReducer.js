@@ -1,9 +1,10 @@
 import actionTypes from '../actions/actionTypes';
 const initialState = {
-    isLoadingGender:false,
-    genders:[],
-    roles:[],
-    position:[],
+    isLoadingGender: false,
+    genders: [],
+    roles: [],
+    position: [],
+    users:[],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -35,7 +36,7 @@ const adminReducer = (state = initialState, action) => {
                 ...state
             }
         case actionTypes.FETCH_POSITION_FAIDED:
-            console.log('fetch gender faided', action)
+            console.log('fetch Position faided', action)
             state.position = [];
             return {
                 ...state,
@@ -52,8 +53,19 @@ const adminReducer = (state = initialState, action) => {
             state.roles = [];
             return {
                 ...state,
-            }        
-        
+            }
+        case actionTypes.FETCH_ALL_USER_SUCCESS:
+            console.log('fetch User success', action)
+            state.users = action.data;
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_ALL_USER_FAIDED:
+            console.log('fetch User faided', action)
+            state.users = [];
+            return {
+                ...state,
+            }
         default:
             return state;
     }
