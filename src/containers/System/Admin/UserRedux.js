@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { getAllCodeServices } from '../../../services/userService';
-import { LANGUAGE,CRUD_ACTIONS } from '../../../utils';
+import { LANGUAGE,CRUD_ACTIONS ,CommonUtils} from '../../../utils';
 import * as actions from '../../../store/actions';
 import './UserRedux.scss';
 import Lightbox from 'react-image-lightbox';
@@ -84,14 +84,16 @@ class UserRedux extends Component {
             })
         }
     }
-    handleOnchangeImage = (event) => {
+    handleOnchangeImage = async (event) => {
         let data = event.target.files;
         let file = data[0];
         if (file) {
+            let base64 = await CommonUtils.getBase64(file);
             let objectUrl = URL.createObjectURL(file);
+            console.log(base64)
             this.setState({
                 previewImgUrl: objectUrl,
-                avatar: file,
+                avatar: base64,
             })
         }
     }
@@ -111,6 +113,7 @@ class UserRedux extends Component {
         let {action} = this.state;
         if (isValid === false) return;
         if(action === CRUD_ACTIONS.CREATE){
+            
             await this.props.createNewUser({
                 email: this.state.email,
                 password: this.state.password,
@@ -121,6 +124,7 @@ class UserRedux extends Component {
                 roleId: this.state.role,
                 phoneNumber: this.state.phoneNumber,
                 positionId: this.state.position,
+                avatar:this.state.avatar,
             });
             this.props.fetchAllUsersStart();
         }
