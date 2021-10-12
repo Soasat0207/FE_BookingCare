@@ -65,6 +65,9 @@
         "save":"Save",
         "image":"Image",
         "edit":"Change"
+    },
+    "homepage":{
+        "out-standing-doctor":"Last Week's Featured Doctor",
+        "more-info":"More"
     }
-
 }

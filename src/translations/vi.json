@@ -65,5 +65,9 @@
         "save":"Tạo người dùng",
         "image":"ảnh đại diện",
         "edit":"Thay đổi "
+    },
+    "homepage":{
+        "out-standing-doctor":"Bác Sĩ Nổi Bật Tuần Qua",
+        "more-info":"Xem Thêm"
     }
 }

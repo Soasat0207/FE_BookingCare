@@ -4,7 +4,8 @@ import {
     createNewUserService,
     getAllUsers,
     deleteUserService,
-    editUserService
+    editUserService,
+    getTopDoctorHomeService
 } from '../../services/userService';
 import {
     toast
@@ -190,3 +191,22 @@ export const editUserSuccess = () => ({
 export const editUserFailed = () => ({
     type: actionTypes.EDIT_USER_FAIDED,
 })
+export const fetchTopDoctor = () => {
+    return async (dispatch, getState) => {
+        try {
+          let res = await getTopDoctorHomeService('');
+          if(res && res.errCode ===0 ){
+            dispatch({
+                type: actionTypes.FETCH_TOP_DOCTORS_SUCCESS,
+                data:res.data
+            })
+          }
+          else{
+            dispatch({type: actionTypes.FETCH_TOP_DOCTORS_FAIDED})
+          }
+        } catch (error) {
+            dispatch({type: actionTypes.FETCH_TOP_DOCTORS_FAIDED})
+            console.log('fetchTopDoctorFailed', error);
+        }
+    }
+}
