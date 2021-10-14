@@ -26,7 +26,7 @@ class HomePage extends Component {
         };
         return ( 
             <Fragment>
-                <HomeHeader/>
+                <HomeHeader isShowBanner={true}/>
                 <Specialty settings={settings}/>
                 <MedicalFacility  settings={settings}/>
                 <OutStandingDoctor settings={settings}/>

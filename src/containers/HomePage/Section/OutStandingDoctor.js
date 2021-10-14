@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import * as actions from '../../../store/actions';
 import { LANGUAGE} from '../../../utils';
+import {withRouter} from 'react-router'
 
 class OutStandingDoctor extends Component {
     constructor(props) {
@@ -30,6 +31,9 @@ class OutStandingDoctor extends Component {
                 arrDoctors: this.props.topDoctors
             })
         }
+    }
+    handleViewDetailDoctor = (doctor) => {
+        this.props.history.push(`/detail-doctor/${doctor.id}`)
     }
     render() {
         let arrDoctors = this.state.arrDoctors;
@@ -54,7 +58,7 @@ class OutStandingDoctor extends Component {
                                         let nameVi = `${item.positionData.valueVi},${item.firstName} ${item.lastName}`;
                                         let nameEn = `${item.positionData.valueEn},${item.firstName} ${item.lastName}`;
                                         return (
-                                            <div className="img-custom">
+                                            <div className="img-custom" key={index} onClick={()=>this.handleViewDetailDoctor(item)}>
                                                 <div className="custom-border">
                                                     <div className="outer-bg">
                                                         <div className="bg-img"
@@ -62,7 +66,7 @@ class OutStandingDoctor extends Component {
                                                         ></div>
                                                     </div>
                                                     <div className="text-center">
-                                                        <h6>{language === LANGUAGE.VI ?nameVi : nameEn}</h6>
+                                                        <h6>{language === LANGUAGE.VI ? nameVi : nameEn}</h6>
                                                         <h6>Da liễu</h6>
                                                     </div>
                                                 </div>
@@ -96,4 +100,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor)) ;
