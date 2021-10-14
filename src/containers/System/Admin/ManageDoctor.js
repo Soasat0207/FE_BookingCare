@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './ManageDoctor.scss';
 import * as actions from '../../../store/actions';
-import { LANGUAGE } from '../../../utils';
+import { CRUD_ACTIONS, LANGUAGE } from '../../../utils';
 import { getDetailInfoDoctors } from '../../../services/userService'
 // import react, react-markdown-editor-lite, and a markdown parser you like
 import MarkdownIt from 'markdown-it';
@@ -22,6 +22,7 @@ class ManageDoctor extends Component {
             description: '',
             descriptionHTML: '',
             listDoctor: [],
+            hasOldData:false,
         }
     }
     async componentDidMount() {
@@ -49,12 +50,14 @@ class ManageDoctor extends Component {
     }
 
     handleSaveContentMarkdown = () => {
+        let {hasOldData} = this.state;
         this.props.saveDetailDoctor({
             contentHTML: this.state.contentHTML,
             contentMarkdown: this.state.contentMarkdown,
             description: this.state.description,
             descriptionHTML:this.state.descriptionHTML,
             doctorId: this.state.selectedOption.value,
+            action:hasOldData === true ? CRUD_ACTIONS.EDIT : CRUD_ACTIONS.CREATE
         })
     }
     handleChange = async (selectedOption) => {
@@ -65,9 +68,19 @@ class ManageDoctor extends Component {
             this.setState({
                 contentHTML: markdown.contentHTML,
                 contentMarkdown: markdown.contentMarkdown,
+                descriptionHTML: markdown.descriptionHTML,
                 description: markdown.description,
-                // doctorId:markdown.selectedOption.value,
+                hasOldData:true
             })
+        }
+        else{
+            this.setState({
+                contentHTML:'',
+                contentMarkdown: '',
+                descriptionHTML: '',
+                description: '',
+                hasOldData:false,
+            })  
         }
     };
     // handleOnChangeDesc = (event) => {
@@ -93,7 +106,7 @@ class ManageDoctor extends Component {
 
     render() {
         let arrUsers = this.state.usersRedux;
-        console.log('check state',this.state)
+        let {hasOldData} = this.state;
         return (
             <Fragment>
                 <div className="manage-doctor-container">
@@ -133,9 +146,9 @@ class ManageDoctor extends Component {
                             value={this.state.contentMarkdown}
                         />
                     </div>
-                    <button className="save-content-doctor"
+                    <button className={hasOldData === true ? 'save-content-doctor' :'create-content-doctor'}
                         onClick={() => this.handleSaveContentMarkdown()}
-                    >Lưu Thông Tin</button>
+                    >{hasOldData === true ?<span>Lưu Thông Tin</span> :<span>Tạo thông tin </span>}</button>
                 </div>
             </Fragment>
 
