@@ -9,6 +9,7 @@ import DatePicker from '../../../components/Input/DatePicker'
 import {toast} from "react-toastify"
 import moment from 'moment';
 import _ from 'lodash';
+import {saveBulkScheduleDoctor} from '../../../services/userService'
 class ManageSchedule extends Component {
     constructor(props) {
         super(props);
@@ -61,10 +62,12 @@ class ManageSchedule extends Component {
             })
         }
     }
-    handleSaveSchedule = () => {
+    handleSaveSchedule = async() => {
         let { rangeTime, currentDate, selectedOption } = this.state;
         let result= [];
-        let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER)
+        // let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER)
+        //  = moment(currentDate).unix();
+         let formatedDate = new Date(currentDate).getTime();
         if (!currentDate) {
             toast.error('Invalid data!')
             return;
@@ -76,11 +79,11 @@ class ManageSchedule extends Component {
         if(rangeTime && rangeTime.length > 0){
             let selectedTime = rangeTime.filter(item => item.isSelected === true);
             if(selectedTime && selectedTime.length > 0){
-                selectedTime.map(sechdule =>{
+                selectedTime.map(schedule =>{
                     let object ={};
                     object.doctorId = selectedOption.value;
                     object.date = formatedDate;
-                    object.time = sechdule.keyMap;
+                    object.timeType = schedule.keyMap;
                     result.push(object);
                 })
             }
@@ -89,7 +92,12 @@ class ManageSchedule extends Component {
                 return; 
             }
         }
-        console.log('check result',result);
+        let res = await saveBulkScheduleDoctor({
+            arrSchedule:result,
+            doctorId:selectedOption.value,
+            date:formatedDate,
+        });
+        console.log('check res',res);
 
     }
     buildDataInputSelect = (data) => {
