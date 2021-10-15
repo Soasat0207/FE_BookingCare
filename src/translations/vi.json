@@ -49,6 +49,9 @@
             "specialty":"Chuyên khoa",
             "manage-handbook":"Quản lý Cẩm nang ",
             "handbook":"Cẩm nang"
+        },
+        "doctor":{
+            "manage-schedule":"Quản lý kế hoạch Khám Bệnh "
         }
     },
     "manage-user":{
