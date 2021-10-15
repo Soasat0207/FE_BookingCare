@@ -72,5 +72,11 @@
     "homepage":{
         "out-standing-doctor":"Bác Sĩ Nổi Bật Tuần Qua",
         "more-info":"Xem Thêm"
+    },
+    "manage-schedule":{
+        "title":"Quản lý khám bệnh của bác sĩ",
+        "choose-date":"Chọn Ngày",
+        "choose-doctor":"Chọn bác sĩ",
+        "save":"Lưu Thông Tin"
     }
 }

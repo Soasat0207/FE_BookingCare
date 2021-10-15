@@ -43,7 +43,9 @@ class Login extends Component {
 
     redirectToSystemPage = () => {
         const { navigate } = this.props;
+       
         const redirectPath = '/system/user-manage';
+        
         navigate(`${redirectPath}`);
     }
 
@@ -157,7 +159,9 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-        lang: state.app.language
+        lang: state.app.language,
+        isLoggedIn: state.user.isLoggedIn,
+
     };
 };
 
