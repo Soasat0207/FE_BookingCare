@@ -24,11 +24,32 @@ const editUserService = (data) => {
 const getAllCodeServices = (data) =>{
     return axios.get(`/api/allcode?type=${data}`);
 }
+const getTopDoctorHomeService = (limit) =>{
+    return axios.get(`/api/top-doctor-home?limit=${limit}`)
+}
+const getAllDoctors = () =>{
+    return axios.get(`/api/get-all-doctor`)
+}
+const saveDetailsDoctor = (data) => {
+    return axios.post(`/api/save-info-doctors`,data);
+} 
+const getDetailInfoDoctors = (id) =>{
+    return axios.get(`/api/get-detail-doctor-by-id?id=${id}`)
+}
+const saveBulkScheduleDoctor = (data) => {
+    return axios.post(`/api/bulk-create-schedule`,data)
+
+}
 export  {
     handleLoginApi,
     getAllUsers,
     createNewUserService,
     deleteUserService,
     editUserService,
-    getAllCodeServices
+    getAllCodeServices,
+    getTopDoctorHomeService,
+    getAllDoctors,
+    saveDetailsDoctor,
+    getDetailInfoDoctors,
+    saveBulkScheduleDoctor,
 };

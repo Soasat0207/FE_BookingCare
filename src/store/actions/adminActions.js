@@ -4,7 +4,10 @@ import {
     createNewUserService,
     getAllUsers,
     deleteUserService,
-    editUserService
+    editUserService,
+    getTopDoctorHomeService,
+    getAllDoctors,
+    saveDetailsDoctor
 } from '../../services/userService';
 import {
     toast
@@ -190,3 +193,79 @@ export const editUserSuccess = () => ({
 export const editUserFailed = () => ({
     type: actionTypes.EDIT_USER_FAIDED,
 })
+export const fetchTopDoctor = () => {
+    return async (dispatch, getState) => {
+        try {
+          let res = await getTopDoctorHomeService('');
+          if(res && res.errCode ===0 ){
+            dispatch({
+                type: actionTypes.FETCH_TOP_DOCTORS_SUCCESS,
+                data:res.data
+            })
+          }
+          else{
+            dispatch({type: actionTypes.FETCH_TOP_DOCTORS_FAIDED})
+          }
+        } catch (error) {
+            dispatch({type: actionTypes.FETCH_TOP_DOCTORS_FAIDED})
+            console.log('fetchTopDoctorFailed', error);
+        }
+    }
+}
+export const fetchAllDoctors= () => {
+    return async (dispatch, getState) => {
+        try {
+          let res = await getAllDoctors();
+          if(res && res.errCode ===0 ){
+            dispatch({
+                type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
+                data:res.data
+            })
+          }
+          else{
+            dispatch({type: actionTypes.FETCH_ALL_DOCTORS_FAIDED})
+          }
+        } catch (error) {
+            dispatch({type: actionTypes.FETCH_ALL_DOCTORS_FAIDED})
+            console.log('fetchTopDoctorFailed', error);
+        }
+    }
+}
+export const saveDetailDoctor = (data) => {
+    return async (dispatch, getState) => {
+        try {
+          let res = await saveDetailsDoctor(data);
+          if(res && res.errCode ===0 ){
+            toast.success('save Details doctor success')
+            dispatch({
+                type: actionTypes.FETCH_DETAILS_DOCTOR_SUCCESS,
+            })
+          }
+          else{
+            toast.error('save Details doctor error')
+            dispatch({type: actionTypes.FETCH_DETAILS_DOCTOR_FAIDED})
+          }
+        } catch (error) {
+            dispatch({type: actionTypes.FETCH_DETAILS_DOCTOR_FAIDED})
+        }
+    }
+}
+export const fetchAllScheduleTime = () => {
+    return async (dispatch, getState) => {
+        try {
+          let res = await getAllCodeServices('TIME');
+          if(res && res.errCode ===0 ){
+            dispatch({
+                type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS,
+                data:res.data
+            })
+          }
+          else{
+            dispatch({type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAIDED})
+          }
+        } catch (error) {
+            console.log('fetchTimeFailed', error);
+            dispatch({type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAIDED})
+        }
+    }
+}
