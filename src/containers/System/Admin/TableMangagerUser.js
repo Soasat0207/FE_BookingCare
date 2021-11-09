@@ -49,7 +49,7 @@ class TableMangagerUser extends Component {
                                     <tr key={index}>
                                         <td>{item.email}</td>
                                         <td>{item.firstName}</td>
-                                        <td>{item.lastName}</td>
+                                         <td>{item.lastName}</td>
                                         <td>{item.address}</td>
                                         <td>
                                             <button className="btn-edit"
